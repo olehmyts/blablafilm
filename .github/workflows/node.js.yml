@@ -35,9 +35,9 @@ jobs:
 
     - name: Get secrets and vars
       run: | 
-      echo "REACT_APP_API_KEY:$REACT_APP_API_KEY, REACT_APP_API_URL:$REACT_APP_API_URL"
-      echo "vars REACT_APP_API_KEY:${{ vars.REACT_APP_API_KEY }}, REACT_APP_API_URL:${{ vars.REACT_APP_API_URL }}"
-      echo "secrets REACT_APP_API_KEY:${{ secrets.REACT_APP_API_KEY }}, REACT_APP_API_URL:${{ secrets.REACT_APP_API_URL }}"
+        echo "REACT_APP_API_KEY:$REACT_APP_API_KEY, REACT_APP_API_URL:$REACT_APP_API_URL"
+        echo "vars REACT_APP_API_KEY:${{ vars.REACT_APP_API_KEY }}, REACT_APP_API_URL:${{ vars.REACT_APP_API_URL }}"
+        echo "secrets REACT_APP_API_KEY:${{ secrets.REACT_APP_API_KEY }}, REACT_APP_API_URL:${{ secrets.REACT_APP_API_URL }}"
 
     - name: Deploy with gh-pages
       run: |
