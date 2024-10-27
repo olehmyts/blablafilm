@@ -11,6 +11,7 @@ const useProducts = () => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts();
+        setProducts(data);
       } catch (error) {
         console.error('Failed to load products:', error);
       } finally {
