@@ -1,6 +1,6 @@
 import "./App.css";
 import useProducts from "./hooks/useProducts";
-import { Card, Row, Col } from "antd";
+import { Card, Row } from "antd";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
