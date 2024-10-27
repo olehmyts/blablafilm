@@ -32,6 +32,9 @@ jobs:
       run: npm run build --if-present
     - run: npm test
 
+    - name: get secrets
+      run: echo "REACT_APP_API_KEY:${{ secrets.REACT_APP_API_KEY }}, REACT_APP_API_URL:${{ secrets.REACT_APP_API_URL }}"
+
     - name: Deploy with gh-pages
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
