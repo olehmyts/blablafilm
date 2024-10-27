@@ -13,18 +13,17 @@ function App() {
   if (loading) return <p>Loading...</p>;
   return (
     <div className="App">
-      <h1>Hello React! </h1>
+      <h1>Hello React!!! </h1>
       <Row>
         {products.map((product) => (
-          <Col>
-            <Card
-              type="inner"
-              title={product.title}
-              style={{ width: 300, margin: 10 }}
-            >
-              <p>{product.description}</p>
-            </Card>
-          </Col>
+          <Card
+            key={product.id}
+            type="inner"
+            title={product.title}
+            style={{ width: 300, margin: 10 }}
+          >
+            <p>{product.description}</p>
+          </Card>
         ))}
       </Row>
     </div>
