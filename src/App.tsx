@@ -1,20 +1,26 @@
 import "./App.css";
-import useProducts from "./hooks/useProducts";
-import { Card, Row } from "antd";
+// import useProducts from "./hooks/useProducts";
+import { Row, Select } from "antd";
+import useMovieGenres from "./hooks/useMovieGenres";
 
 function App() {
-  const apiKey = process.env.REACT_APP_API_KEY;
-  const apiUrl = process.env.REACT_APP_API_URL;
-  console.log(apiKey);
-  console.log(apiUrl);
-
-  const { products, loading } = useProducts();
-
+  const { movieGenres, loading } = useMovieGenres();
   if (loading) return <p>Loading...</p>;
+
   return (
     <div className="App">
       <h1>Hello React!!! </h1>
       <Row>
+        <Select
+          style={{ width: 200, textAlign: "left" }}
+          allowClear
+          options={movieGenres.map((item) => ({
+            value: item.id,
+            label: item.name,
+          }))}
+        />
+      </Row>
+      {/* <Row>
         {products.map((product) => (
           <Card
             key={product.id}
@@ -25,7 +31,7 @@ function App() {
             <p>{product.description}</p>
           </Card>
         ))}
-      </Row>
+      </Row> */}
     </div>
   );
 }
