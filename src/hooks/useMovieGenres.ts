@@ -1,4 +1,3 @@
-// hooks/useUsers.ts
 import { useEffect, useState } from 'react';
 import { fetchMovieGenres } from '../api/genresEndpoints';
 import { Genre } from '../interfaces/Genre';
