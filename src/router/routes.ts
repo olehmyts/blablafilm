@@ -1,8 +1,8 @@
 class Routes{
-  public home = '/';
-  public about = '/about';
-  public films = '/films';
-  public viewFilm = '/films/:id';
+  public home = 'blablafilm/';
+  public about = 'blablafilm/about';
+  public films = 'blablafilm/films';
+  public viewFilm = 'blablafilm//films/:id';
 }
 
 export const routes = new Routes();
