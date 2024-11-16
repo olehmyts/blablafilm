@@ -3,10 +3,7 @@
 
 <head>
   <script>
-    const baseUrl = window.location.origin + '/' + window.location.pathname.split('/')[1] + '/';
-    const newUrl = baseUrl + (window.location.hash || '');
-
-    window.location.replace(newUrl);
+    window.location.replace(window.location.href);
   </script>
 </head>
 
