@@ -2,12 +2,13 @@
 <html>
   <head>
     <script>
-      const repoName = window.location.pathname.split('/')[1];
-      const newUrl = `/${repoName}/`;
+      const baseUrl = window.location.origin + window.location.pathname.split('/')[1] + '/';
+      const newUrl = baseUrl + (window.location.hash || '');
+
       window.location.replace(newUrl);
     </script>
   </head>
   <body>
-    Redirecting to the home page...
+    Redirecting to the proper page...
   </body>
 </html>
