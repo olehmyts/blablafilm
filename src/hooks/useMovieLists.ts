@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchMovieLists } from '../api/movieListsEndpoints';
+import { movieEndpoints } from '../api/movieListsEndpoints';
 import { MoviesList } from '../interfaces/MoviesList';
 
 const useMovieLists = (category: string, language: string, currentPage: number) => {
@@ -9,7 +9,7 @@ const useMovieLists = (category: string, language: string, currentPage: number) 
   useEffect(() => {
     const loadGenres = async () => {
       try {
-        const data = await fetchMovieLists(category, language, currentPage );
+        const data = await movieEndpoints.fetchMovieLists(category, language, currentPage );
         setMoviesList(data);
       } catch (error) {
         console.error('Failed to load Movies:', error);

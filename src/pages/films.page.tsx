@@ -5,6 +5,7 @@ import useMovieLists from "../hooks/useMovieLists";
 import useAppLanguage from "../hooks/useAppLanguage";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Link from "antd/es/typography/Link";
 
 const Films: React.FC = () => {
   const navigate = useNavigate();
@@ -121,13 +122,15 @@ const Films: React.FC = () => {
         />
       </Row>
       {/* if (moviesLoading) return <p>Loading...</p>; */}
-      <Row>
+      <Row style={{padding: "26px"}}>
         {movies?.results.map((movie) => (
           <Card
             key={movie.id}
             type="inner"
-            title={`${movie.title}`}
-            style={{ width: 300, margin: 10 }}
+            title={
+              <Link href={`films/${movie.id}`}>{movie.title}</Link>
+            }
+            style={{ width: 240, margin: 10 }}
           >
             <Image
               src={"https://image.tmdb.org/t/p/original" + movie.poster_path}

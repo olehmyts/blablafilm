@@ -1,6 +1,6 @@
 import "./App.css";
-import Header from "./pages/header";
-import { Footer } from "./pages/footer";
+import Header from "./components/header.component";
+import { Footer } from "./components/footer.component";
 import BaseRouter from "./router/base.router";
 
 const App: React.FC = () => {

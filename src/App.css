@@ -1,3 +1,28 @@
 .App {
   text-align: center;
 }
+
+.image-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 10px;
+  padding: 10px;
+}
+
+.image-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.image-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.image-scroll-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.ant-image-mask {
+  position: relative!important;
+}
