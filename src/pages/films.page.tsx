@@ -1,5 +1,14 @@
 // import useProducts from "./hooks/useProducts";
-import { Row, Segmented, Card, Image, Select, Col, Pagination } from "antd";
+import {
+  Row,
+  Segmented,
+  Card,
+  Image,
+  Select,
+  Col,
+  Pagination,
+  Spin,
+} from "antd";
 // import useMovieGenres from "./hooks/useMovieGenres";
 import useMovieLists from "../hooks/useMovieLists";
 import useAppLanguage from "../hooks/useAppLanguage";
@@ -54,14 +63,23 @@ const Films: React.FC = () => {
   function onChangePage(page: number) {
     setPage(page);
     setSearchParams();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
-  if (moviesLoading) return <p>Loading...</p>;
+  if (moviesLoading)
+    return (
+      <div style={{ height: 500 }}>
+        <Spin tip="Loading" style={{ marginTop: 250 }}>
+          Loading...
+        </Spin>
+      </div>
+    );
 
   return (
-    <>
-      <h1>Hello from bla bla film!!! </h1>
-
+    <div>
       <Row style={{ float: "right" }}>
         <Col span={24}>
           <Select
@@ -87,6 +105,7 @@ const Films: React.FC = () => {
       /> */}
         <Col span={24}>
           <Segmented
+            style={{ marginTop: 10 }}
             options={[
               {
                 label: "Now Playing",
@@ -110,7 +129,8 @@ const Films: React.FC = () => {
           />
         </Col>
       </Row>
-      <Row style={{ alignItems: "center" }}>
+      {/* <Row
+      >
         <Pagination
           current={page}
           hideOnSinglePage
@@ -119,27 +139,38 @@ const Films: React.FC = () => {
           defaultPageSize={20}
           showSizeChanger={false}
         />
-      </Row>
-      {/* if (moviesLoading) return <p>Loading...</p>; */}
-      <Row style={{padding: "26px"}}>
+      </Row> */}
+      <Row
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
         {movies?.results.map((movie) => (
-          <Card
-            key={movie.id}
-            type="inner"
-            title={
-              <a href={`films/${movie.id}`}>{movie.title}</a>
-            }
-            style={{ width: 240, margin: 10 }}
-          >
-            <Image
-              src={"https://image.tmdb.org/t/p/original" + movie.poster_path}
-              alt={movie.title}
-            />
-            <p>{movie.overview}</p>
-          </Card>
+          <a href={`films/${movie.id}`}>
+            <Card
+              key={movie.id}
+              type="inner"
+              style={{ width: 270, margin: 10 }}
+            >
+              <Image
+                preview={false}
+                src={"https://image.tmdb.org/t/p/original" + movie.poster_path}
+                alt={movie.title}
+              />
+              {movie.title}
+            </Card>
+          </a>
         ))}
       </Row>
       <Pagination
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
         current={page}
         hideOnSinglePage
         total={movies!.total_results > 10000 ? 10000 : movies?.total_results}
@@ -147,7 +178,7 @@ const Films: React.FC = () => {
         defaultPageSize={20}
         showSizeChanger={false}
       />
-    </>
+    </div>
   );
 };
 
