@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script>
-      const baseUrl = window.location.origin + window.location.pathname.split('/')[1] + '/';
-      const newUrl = baseUrl + (window.location.hash || '');
 
-      window.location.replace(newUrl);
-    </script>
-  </head>
-  <body>
-    Redirecting to the proper page...
-  </body>
+<head>
+  <script>
+    const baseUrl = window.location.origin + '/' + window.location.pathname.split('/')[1] + '/';
+    const newUrl = baseUrl + (window.location.hash || '');
+
+    window.location.replace(newUrl);
+  </script>
+</head>
+
+<body>
+  Redirecting to the proper page...
+</body>
+
 </html>
