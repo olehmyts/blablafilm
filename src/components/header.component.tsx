@@ -5,14 +5,14 @@ import useAppLanguage from "../hooks/useAppLanguage";
 import { useState } from "react";
 
 const Header = () => {
-  const { languages } = useAppLanguage();
-  const [appLanguage, setAppLanguage] = useState<string>(
-    localStorage.getItem("lang")!
-  );
-  function setLanguage(lang: string) {
-    setAppLanguage(lang);
-    localStorage.setItem("lang", lang);
-  }
+  // const { languages } = useAppLanguage();
+  // const [appLanguage, setAppLanguage] = useState<string>(
+  //   localStorage.getItem("lang")!
+  // );
+  // function setLanguage(lang: string) {
+  //   setAppLanguage(lang);
+  //   localStorage.setItem("lang", lang);
+  // }
 
   return (
     <header style={{ background: "#282c34", padding: "10px", color: "white" }}>
