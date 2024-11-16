@@ -5,7 +5,6 @@ import useMovieLists from "../hooks/useMovieLists";
 import useAppLanguage from "../hooks/useAppLanguage";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Link from "antd/es/typography/Link";
 
 const Films: React.FC = () => {
   const navigate = useNavigate();
@@ -128,7 +127,7 @@ const Films: React.FC = () => {
             key={movie.id}
             type="inner"
             title={
-              <Link href={`films/${movie.id}`}>{movie.title}</Link>
+              <a href={`films/${movie.id}`}>{movie.title}</a>
             }
             style={{ width: 240, margin: 10 }}
           >
