@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+.content {
+  overflow-y: auto;
+  padding: 10px 0;
 }
 
 .image-scroll-container {

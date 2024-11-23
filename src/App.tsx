@@ -6,9 +6,11 @@ import BaseRouter from "./router/base.router";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header></Header>
-      <BaseRouter></BaseRouter>
-      <Footer></Footer>
+      <Header />
+      <div className="content">
+        <BaseRouter />
+      </div>
+      <Footer />
     </div>
   );
 };

@@ -6,7 +6,6 @@ export function Footer() {
         padding: "10px",
         color: "white",
         textAlign: "center",
-        marginTop: "20px",
       }}
     >
       <p>&copy; 2024 Bla Bla film. All rights reserved.</p>

@@ -13,7 +13,7 @@ import {
 import useMovieLists from "../hooks/useMovieLists";
 import useAppLanguage from "../hooks/useAppLanguage";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const Films: React.FC = () => {
   const navigate = useNavigate();
@@ -84,7 +84,6 @@ const Films: React.FC = () => {
         <Col span={24}>
           <Select
             style={{ width: 120, textAlign: "left" }}
-            allowClear
             options={languages.map((item) => ({
               label: item.english_name,
               value: item.iso_639_1,
@@ -145,11 +144,10 @@ const Films: React.FC = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "100vh",
         }}
       >
         {movies?.results.map((movie) => (
-          <a href={`films/${movie.id}`}>
+          <Link to={`${movie.id}`}>
             <Card
               key={movie.id}
               type="inner"
@@ -162,7 +160,7 @@ const Films: React.FC = () => {
               />
               {movie.title}
             </Card>
-          </a>
+          </Link>
         ))}
       </Row>
       <Pagination
