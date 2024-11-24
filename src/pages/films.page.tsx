@@ -1,21 +1,21 @@
-// import useProducts from "./hooks/useProducts";
 import {
   Row,
   Segmented,
   Card,
   Image,
-  Select,
   Col,
   Pagination,
   Spin,
 } from "antd";
 // import useMovieGenres from "./hooks/useMovieGenres";
 import useMovieLists from "../hooks/useMovieLists";
-import useAppLanguage from "../hooks/useAppLanguage";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useLanguage } from "../store/changeLanguage.context";
 
 const Films: React.FC = () => {
+  const applicationLanguage = useLanguage();
+
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const args = searchParams.get("args");
@@ -25,15 +25,10 @@ const Films: React.FC = () => {
   const getCategory = params.get("category");
   const getPage = params.get("page")!;
 
-  if (!localStorage.getItem("lang")) localStorage.setItem("lang", "en");
-
   const [movieCategory, setMovieCategory] = useState<string>(
     getCategory ? getCategory : "popular"
   );
   const [page, setPage] = useState<number>(getPage ? +getPage : 1);
-  const [appLanguage, setAppLanguage] = useState<string>(
-    localStorage.getItem("lang")!
-  );
 
   useEffect(() => {
     if (!searchParams.has("args")) {
@@ -43,17 +38,11 @@ const Films: React.FC = () => {
   }, [searchParams, navigate, movieCategory, page]);
 
   // const { movieGenres, loading } = useMovieGenres();
-  const { languages } = useAppLanguage();
   const { movies, moviesLoading } = useMovieLists(
     movieCategory,
-    appLanguage,
+    applicationLanguage.language,
     page
   );
-
-  function setLanguage(lang: string) {
-    setAppLanguage(lang);
-    localStorage.setItem("lang", lang);
-  }
 
   function onChangeCategory(category: string) {
     setMovieCategory(category);
@@ -80,19 +69,6 @@ const Films: React.FC = () => {
 
   return (
     <div>
-      <Row style={{ float: "right" }}>
-        <Col span={24}>
-          <Select
-            style={{ width: 120, textAlign: "left" }}
-            options={languages.map((item) => ({
-              label: item.english_name,
-              value: item.iso_639_1,
-            }))}
-            onChange={setLanguage}
-            defaultValue={appLanguage}
-          />
-        </Col>
-      </Row>
       <Row>
         {/* <Select
     style={{ width: 200, textAlign: "left" }}
@@ -128,17 +104,6 @@ const Films: React.FC = () => {
           />
         </Col>
       </Row>
-      {/* <Row
-      >
-        <Pagination
-          current={page}
-          hideOnSinglePage
-          total={movies!.total_results > 10000 ? 10000 : movies?.total_results}
-          onChange={onChangePage}
-          defaultPageSize={20}
-          showSizeChanger={false}
-        />
-      </Row> */}
       <Row
         style={{
           display: "flex",
@@ -147,7 +112,7 @@ const Films: React.FC = () => {
         }}
       >
         {movies?.results.map((movie) => (
-          <Link to={`${movie.id}`}>
+          <Link to={`${movie.id}`} key={movie.id}>
             <Card
               key={movie.id}
               type="inner"

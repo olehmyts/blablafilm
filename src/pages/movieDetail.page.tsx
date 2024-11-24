@@ -3,15 +3,17 @@ import { Image, Row, Col, Tag } from "antd";
 import { useParams } from "react-router-dom";
 import useMovieDetail from "../hooks/useMovieDetail";
 import useMovieDetailPictures from "../hooks/useMovieDetailPictures";
+import { useLanguage } from "../store/changeLanguage.context";
 
 const MovieDetail: React.FC = () => {
-  const { id } = useParams();
-  const lang = localStorage.getItem("lang")!;
+  const applicationLanguage = useLanguage();
 
-  const { movieDetail, movieDetailsLoading } = useMovieDetail(+id!, lang);
+  const { id } = useParams();
+
+  const { movieDetail, movieDetailsLoading } = useMovieDetail(+id!, applicationLanguage.language);
 
   const { movieDetailImages, movieDetailsImagesLoading } =
-    useMovieDetailPictures(+id!, lang);
+    useMovieDetailPictures(+id!, applicationLanguage.language);
 
   if (movieDetailsLoading) return <p>Loading...</p>;
   if (movieDetailsImagesLoading) return <p>Loading...</p>;
