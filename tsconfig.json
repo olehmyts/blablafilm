@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["i18next"],
     "target": "es5",
     "lib": [
       "dom",

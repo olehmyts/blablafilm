@@ -7,13 +7,14 @@ import {
   Pagination,
   Spin,
 } from "antd";
-// import useMovieGenres from "./hooks/useMovieGenres";
 import useMovieLists from "../hooks/useMovieLists";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useLanguage } from "../store/changeLanguage.context";
+import { useTranslation } from "react-i18next";
 
 const Films: React.FC = () => {
+  const { t } = useTranslation();
   const applicationLanguage = useLanguage();
 
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ const Films: React.FC = () => {
     }
   }, [searchParams, navigate, movieCategory, page]);
 
-  // const { movieGenres, loading } = useMovieGenres();
   const { movies, moviesLoading } = useMovieLists(
     movieCategory,
     applicationLanguage.language,
@@ -83,19 +83,19 @@ const Films: React.FC = () => {
             style={{ marginTop: 10 }}
             options={[
               {
-                label: "Now Playing",
+                label: t("Now Playing"),
                 value: "now_playing",
               },
               {
-                label: "Popular",
+                label: t("Popular"),
                 value: "popular",
               },
               {
-                label: "TopRated",
+                label: t("TopRated"),
                 value: "top_rated",
               },
               {
-                label: "Upcoming",
+                label: t("Upcoming"),
                 value: "upcoming",
               },
             ]}

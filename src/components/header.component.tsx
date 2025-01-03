@@ -3,6 +3,7 @@ import { routes } from "../router/routes";
 import { Select } from "antd";
 import useAppLanguage from "../hooks/useAppLanguage";
 import { useLanguage } from "../store/changeLanguage.context";
+import i18next, { t } from "i18next";
 
 const Header = () => {
   const applicationLanguage = useLanguage();
@@ -11,23 +12,24 @@ const Header = () => {
   const menuItems = [
     {
       key: routes.home,
-      label: "Home",
+      label: t("Home"),
     },
     {
       key: routes.films,
-      label: "Films",
+      label: t("Films"),
     },
     {
       key: routes.about,
-      label: "About",
+      label: t("About"),
     },
   ];
 
   const { languages } = useAppLanguage();
 
   function setLanguage(lang: string) {
-    applicationLanguage.setLanguage(lang)
+    applicationLanguage.setLanguage(lang);
     localStorage.setItem("lang", lang);
+    i18next.changeLanguage(lang);
   }
 
   return (
@@ -48,13 +50,9 @@ const Header = () => {
                 padding: "0 10px",
                 color: "white",
                 textDecoration: "none",
-                // backgroundColor:
-                //   menuItem.key === location.pathname.slice(1) ||
-                //   menuItem.key.split("/")[1] === location.pathname.split("/")[2]
-                //     ? "#4267B2"
-                //     : "",
                 borderBottom:
-                  menuItem.key === location.pathname.slice(1) ||
+                  (menuItem.key === location.pathname.slice(1) &&
+                    location.pathname.split("/")[2] === "") ||
                   menuItem.key.split("/")[1] === location.pathname.split("/")[2]
                     ? "5px solid #4267B2"
                     : "",
