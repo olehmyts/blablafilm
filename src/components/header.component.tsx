@@ -1,13 +1,30 @@
 import { Link, useLocation } from "react-router-dom";
 import { routes } from "../router/routes";
-import { Select } from "antd";
+import { Select, Switch } from "antd";
 import useAppLanguage from "../hooks/useAppLanguage";
 import { useLanguage } from "../store/changeLanguage.context";
+import { useTheme } from "../store/theme.context";
 import i18next, { t } from "i18next";
+import { Theme } from "../interfaces/Theme";
+import React from "react";
+
+
 
 const Header = () => {
   const applicationLanguage = useLanguage();
+  const applicationTheme = useTheme();
+  const { languages } = useAppLanguage();
   const location = useLocation();
+
+  const onChangeTheme = (checked: boolean) => {
+    const theme = checked ? Theme.light : Theme.dark;
+    applicationTheme.toggleTheme(theme)
+    localStorage.setItem("theme", theme);
+  };
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute("data-theme", applicationTheme.theme);
+  }, [applicationTheme.theme]);
 
   const menuItems = [
     {
@@ -23,8 +40,6 @@ const Header = () => {
       label: t("About"),
     },
   ];
-
-  const { languages } = useAppLanguage();
 
   function setLanguage(lang: string) {
     applicationLanguage.setLanguage(lang);
@@ -61,6 +76,14 @@ const Header = () => {
               {menuItem.label}
             </Link>
           ))}
+        </div>
+        <div>
+          <Switch
+            checkedChildren={t("Light")}
+            unCheckedChildren={t("Dark")}
+            onChange={onChangeTheme}
+            defaultChecked={applicationTheme.theme === Theme.light ? true : false}
+          />
         </div>
         <div>
           <Select
