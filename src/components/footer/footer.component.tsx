@@ -1,9 +1,7 @@
 import { t } from "i18next";
-import { useLanguage } from "../../store/changeLanguage.context";
 import React from "react";
 
 const Footer: React.FC = () => {
-  useLanguage();
 
   return (
     <footer

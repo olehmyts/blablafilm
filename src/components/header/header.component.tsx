@@ -1,12 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { routes } from "../../router/routes";
-import { useLanguage } from "../../store/changeLanguage.context";
 import { t } from "i18next";
 import { SelectLanguage } from "../selectLanguage/selectLanguage.component";
 import { SwitchTheme } from "../switchTheme/switchTheme.component";
 
 const Header = () => {
-  useLanguage();
   const location = useLocation();
 
   const menuItems = [
