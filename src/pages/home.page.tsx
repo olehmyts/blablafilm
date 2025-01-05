@@ -1,7 +1,12 @@
 import React from "react";
+import { t } from "i18next";
+
+import { useLanguage } from "../store/changeLanguage.context";
 
 const Home: React.FC = () => {
-  return <h1>Hello from bla bla film!!! </h1>;
+  useLanguage();
+
+  return <h1>{t("Home")}</h1>;
 };
 
 export default Home;
